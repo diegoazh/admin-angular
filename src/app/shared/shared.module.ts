@@ -1,16 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { NotImplementedComponent } from './components/not-implemented/not-implemented.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [
-    MainLayoutComponent,
-    NotFoundComponent,
-    NotImplementedComponent,
+  declarations: [],
+  imports: [
+    CommonModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
   ],
-  imports: [CommonModule],
-  exports: [MainLayoutComponent, NotFoundComponent, NotImplementedComponent],
+  exports: [CommonModule, FormsModule, BrowserAnimationsModule],
 })
 export class SharedModule {}
