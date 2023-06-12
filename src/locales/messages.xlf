@@ -2,6 +2,283 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="7844773538229022921" datatype="html">
+        <source>Authenticating</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/authentication/authentication.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9018951227382483844" datatype="html">
+        <source>Trying to authenticate, please wait...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/authentication/authentication.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2454050363478003966" datatype="html">
+        <source>Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/login/login.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2890458514392033567" datatype="html">
+        <source>Welcome to the administration!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/login/login.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1168397086420765932" datatype="html">
+        <source>Sign-in</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/login/login.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7598751979267568172" datatype="html">
+        <source>write the username...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="662602026975352899" datatype="html">
+        <source> Error: the username can not be empty </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">31,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8210294452682870042" datatype="html">
+        <source> Error: you need <x id="INTERPOLATION" equiv-text="{{username?.errors?.[&apos;minlength&apos;]?.[&apos;requiredLength&apos;] - username?.errors?.[&apos;minlength&apos;]?.[&apos;actualLength&apos;]}}"/> characters more to meet the minimum length of <x id="INTERPOLATION_1" equiv-text="{{username?.errors?.[&apos;minlength&apos;]?.[&apos;requiredLength&apos;]}}"/> </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">34,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4737621069206722050" datatype="html">
+        <source> Error: you have <x id="INTERPOLATION" equiv-text="{{username?.errors?.[&apos;maxlength&apos;]?.[&apos;actualLength&apos;] - username?.errors?.[&apos;maxlength&apos;]?.[&apos;requiredLength&apos;]}}"/> characters more than the maximum length of <x id="INTERPOLATION_1" equiv-text="{{username?.errors?.[&apos;maxlength&apos;]?.[&apos;requiredLength&apos;]}}"/> </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">40,45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">138,143</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3714442502095679179" datatype="html">
+        <source>write the email...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6513775234056278762" datatype="html">
+        <source> Error: the email can not be empty </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">70,72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1660729502649816693" datatype="html">
+        <source> Error: you need to set a valid email </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">73,75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8388787850319205657" datatype="html">
+        <source>write the first name...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2527802777462662907" datatype="html">
+        <source>write the last name...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3283593395731595613" datatype="html">
+        <source>write the password...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3793803736241747021" datatype="html">
+        <source> Error: you need to set a password </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">129,131</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7534190418497949992" datatype="html">
+        <source>Error: you need <x id="INTERPOLATION" equiv-text="{{password?.errors?.[&apos;minlength&apos;]?.[&apos;requiredLength&apos;] - password?.errors?.[&apos;minlength&apos;]?.[&apos;actualLength&apos;]}}"/> characters more to meet the minimum length of <x id="INTERPOLATION_1" equiv-text="{{password?.errors?.[&apos;minlength&apos;]?.[&apos;requiredLength&apos;]}}"/> </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">133,137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6420554052276509596" datatype="html">
+        <source>repeat your password...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">163</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3532721107751981714" datatype="html">
+        <source> Error: you need to confirm the password </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">176,178</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4404939405205802375" datatype="html">
+        <source> Error: the passwords are not equal </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.html</context>
+          <context context-type="linenumber">179,181</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3484386172180168121" datatype="html">
+        <source>User was created successfully</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.ts</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5394336016078886613" datatype="html">
+        <source>The user can&apos;t be created</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/create-user-form/create-user-form.component.ts</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5280218112746407598" datatype="html">
+        <source>New</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/user-list/users-list.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7022070615528435141" datatype="html">
+        <source>Delete</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/user-list/users-list.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2304216953155119353" datatype="html">
+        <source>Showing {first} to {last} of {totalRecords} entries</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/user-list/users-list.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1559492902464876514" datatype="html">
+        <source>Manage Products</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/user-list/users-list.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8854094932942190741" datatype="html">
+        <source>Search...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/user-list/users-list.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1361403379356865969" datatype="html">
+        <source> Username <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;username&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/p-sortIcon&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/user-list/users-list.component.html</context>
+          <context context-type="linenumber">62,63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2806239675174851564" datatype="html">
+        <source> First name <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;firstName&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/p-sortIcon&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/user-list/users-list.component.html</context>
+          <context context-type="linenumber">65,66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8820064364557920079" datatype="html">
+        <source> Last name <x id="START_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;p-sortIcon field=&quot;lastName&quot;&gt;"/><x id="CLOSE_TAG_P_SORTICON" ctype="x-p_sorticon" equiv-text="&lt;/p-sortIcon&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/user-list/users-list.component.html</context>
+          <context context-type="linenumber">68,69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4816216590591222133" datatype="html">
+        <source>Enabled</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/user-list/users-list.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6411901163227359492" datatype="html">
+        <source>Email verified</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/user-list/users-list.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1310862758812922772" datatype="html">
+        <source>Required actions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/user-list/users-list.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7480294403149075169" datatype="html">
+        <source> In total there are <x id="INTERPOLATION" equiv-text="{{ users ? users.length : 0 }}"/> users. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/user-list/users-list.component.html</context>
+          <context context-type="linenumber">120,122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="460768807323872129" datatype="html">
+        <source>Create new user</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/user-list/users-list.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2807800733729323332" datatype="html">
+        <source>Yes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/user-list/users-list.component.ts</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3542042671420335679" datatype="html">
+        <source>No</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/user-list/users-list.component.ts</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1670306451865226564" datatype="html">
+        <source>users</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/pages-routing.module.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4555457172864212828" datatype="html">
+        <source>Users</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/users/users.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

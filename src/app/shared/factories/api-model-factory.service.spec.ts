@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { ApiModelFactory } from './api-model-factory.service';
 
 describe('ApiModelFactory', () => {
-  let service: ApiModelFactory;
+  let service: ApiModelFactory<any>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

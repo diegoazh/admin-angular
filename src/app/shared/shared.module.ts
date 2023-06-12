@@ -1,17 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-  ],
-  exports: [CommonModule, FormsModule, BrowserAnimationsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  exports: [CommonModule, FormsModule, ReactiveFormsModule],
 })
 export class SharedModule {}

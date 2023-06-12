@@ -1,8 +1,3 @@
-import { BaseModel } from './base.model';
-import { CommentModel } from './comment.model';
-import { PostModel } from './post.model';
-import { ProfileModel } from './profile.model';
-
 export const UserRoles = {
   USER: 'USER',
   COLLABORATOR: 'COLLABORATOR',
@@ -10,44 +5,67 @@ export const UserRoles = {
   ADMIN: 'ADMIN',
 } as const;
 
-export class UserModel extends BaseModel {
+export class UserModel {
+  public access: {
+    manageGroupMembership: boolean;
+    view: boolean;
+    mapRoles: boolean;
+    impersonate: boolean;
+    manage: boolean;
+  };
+
+  public createdTimestamp: number;
+
+  public disableableCredentialTypes: any[]; // TODO: fix this any type
+
   public email: string;
 
-  public password: string;
+  public emailVerified: boolean;
 
-  public role: typeof UserRoles[keyof typeof UserRoles];
+  public enabled: boolean;
+
+  public firstName: string;
+
+  public id: string;
+
+  public lastName: string;
+
+  public notBefore: number;
+
+  public requiredActions: string[];
+
+  public totp: boolean;
 
   public username: string;
 
-  public image: string;
-
-  public profile?: ProfileModel;
-
-  public posts: PostModel[] = [];
-
-  public comments: CommentModel[] = [];
-
   constructor(data: UserModel) {
-    super(data);
-
     ({
+      access: this.access,
+      createdTimestamp: this.createdTimestamp,
+      disableableCredentialTypes: this.disableableCredentialTypes,
       email: this.email,
-      password: this.password,
-      role: this.role,
+      emailVerified: this.emailVerified,
+      enabled: this.enabled,
+      firstName: this.firstName,
+      id: this.id,
+      lastName: this.lastName,
+      notBefore: this.notBefore,
+      requiredActions: this.requiredActions,
+      totp: this.totp,
       username: this.username,
-      image: this.image,
     } = data);
+  }
 
-    if (data.profile) {
-      this.profile = new ProfileModel(data.profile);
+  public static isUser(data: any): data is UserModel {
+    if (typeof data === 'object') {
+      const keys = Object.keys(data);
+      return (
+        keys.includes('email') &&
+        keys.includes('emailVerified') &&
+        keys.includes('access')
+      );
     }
 
-    if (data.posts.length) {
-      this.posts = data.posts.map((post) => new PostModel(post));
-    }
-
-    if (data.comments.length) {
-      this.comments = data.comments.map((comment) => new CommentModel(comment));
-    }
+    return false;
   }
 }

@@ -3,35 +3,43 @@ import { MessageService } from 'primeng/api';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import {
+  DialogService,
+  DynamicDialogConfig,
+  DynamicDialogModule,
+  DynamicDialogRef,
+} from 'primeng/dynamicdialog';
+import { FieldsetModule } from 'primeng/fieldset';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { SidebarModule } from 'primeng/sidebar';
+import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
 import { SharedModule } from '../shared/shared.module';
-import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { LoginComponent } from './login/login.component';
-import { MainMenuComponent } from './main-menu/main-menu.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { NotImplementedComponent } from './not-implemented/not-implemented.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { ToastComponent } from './toast/toast.component';
-import { AuthenticationComponent } from './authentication/authentication.component';
+import { AuthenticationComponent } from './auth/authentication/authentication.component';
+import { LoginComponent } from './auth/login/login.component';
+import { BreadcrumbsComponent } from './general/breadcrumbs/breadcrumbs.component';
+import { NotFoundComponent } from './general/not-found/not-found.component';
+import { NotImplementedComponent } from './general/not-implemented/not-implemented.component';
+import { ToastComponent } from './general/toast/toast.component';
+import { CreateUserFormComponent } from './users/create-user-form/create-user-form.component';
+import { UsersListComponent } from './users/user-list/users-list.component';
+import { DeleteUserComponent } from './users/delete-user/delete-user.component';
 
 @NgModule({
   declarations: [
     NotFoundComponent,
     NotImplementedComponent,
-    MainMenuComponent,
     BreadcrumbsComponent,
     ToastComponent,
-    HeaderComponent,
-    FooterComponent,
-    SidebarComponent,
     LoginComponent,
     AuthenticationComponent,
+    UsersListComponent,
+    CreateUserFormComponent,
+    DeleteUserComponent,
   ],
   imports: [
     SharedModule,
@@ -43,18 +51,25 @@ import { AuthenticationComponent } from './authentication/authentication.compone
     SidebarModule,
     SelectButtonModule,
     CardModule,
+    TableModule,
+    ToolbarModule,
+    TagModule,
+    DynamicDialogModule,
+    FieldsetModule,
   ],
-  providers: [MessageService],
+  providers: [
+    MessageService,
+    DialogService,
+    DynamicDialogRef,
+    DynamicDialogConfig,
+  ],
   exports: [
     NotFoundComponent,
     NotImplementedComponent,
-    MainMenuComponent,
     BreadcrumbsComponent,
     ToastComponent,
-    HeaderComponent,
-    FooterComponent,
-    SidebarComponent,
     AuthenticationComponent,
+    UsersListComponent,
   ],
 })
 export class ComponentsModule {}

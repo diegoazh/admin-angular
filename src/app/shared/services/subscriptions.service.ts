@@ -16,8 +16,12 @@ export class SubscriptionsService {
     store?.add(sub);
   }
 
-  public unsubscribe(componentName: string): void {
-    if (this.components?.has(componentName)) {
+  public unsubscribe(componentName?: string): void {
+    if (!componentName) {
+      this.components?.forEach((store) => store.unsubscribe());
+    }
+
+    if (componentName && this.components?.has(componentName)) {
       const store = this.components.get(componentName);
       store?.unsubscribe();
     }

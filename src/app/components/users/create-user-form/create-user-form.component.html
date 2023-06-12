@@ -1,0 +1,229 @@
+<div class="flex">
+  <div class="flex-col w-full">
+    <p-fieldset legend="User data" styleClass="p-2">
+      <form [formGroup]="userForm" (ngSubmit)="submit()">
+        <span
+          class="p-float-label"
+          [ngClass]="{
+            'mb-2': username?.invalid && (username?.dirty || username?.touched),
+            'mb-7': !(
+              username?.invalid &&
+              (username?.dirty || username?.touched)
+            )
+          }"
+        >
+          <input
+            pInputText
+            type="text"
+            name="username"
+            id="username"
+            class="rounded-md w-full border-gray-200"
+            placeholder="write the username..."
+            i18n-placeholder
+            formControlName="username"
+          />
+          <label htmlFor="username">Username</label>
+        </span>
+        <div
+          class="flex flex-col text-red-400 mb-7"
+          *ngIf="username?.invalid && (username?.dirty || username?.touched)"
+        >
+          <small *ngIf="username?.errors?.['required']" i18n>
+            Error: the username can not be empty
+          </small>
+          <small *ngIf="username?.errors?.['minlength']" i18n>
+            Error: you need
+            {{username?.errors?.['minlength']?.['requiredLength'] - username?.errors?.['minlength']?.['actualLength']}}
+            characters more to meet the minimum length of
+            {{username?.errors?.['minlength']?.['requiredLength']}}
+          </small>
+          <small *ngIf="username?.errors?.['maxlength']" i18n>
+            Error: you have
+            {{username?.errors?.['maxlength']?.['actualLength'] - username?.errors?.['maxlength']?.['requiredLength']}}
+            characters more than the maximum length of
+            {{username?.errors?.['maxlength']?.['requiredLength']}}
+          </small>
+        </div>
+        <span
+          class="p-float-label"
+          [ngClass]="{
+            'mb-2': email?.invalid && (email?.dirty || email?.touched),
+            'mb-7': !(email?.invalid && (email?.dirty || email?.touched))
+          }"
+        >
+          <input
+            pInputText
+            type="email"
+            name="email"
+            id="email"
+            class="rounded-md w-full border-gray-200"
+            placeholder="write the email..."
+            i18n-placeholder
+            formControlName="email"
+          />
+          <label htmlFor="email">Email</label>
+        </span>
+        <div
+          class="flex flex-col text-red-400 mb-7"
+          *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+        >
+          <small *ngIf="email?.errors?.['required']" i18n>
+            Error: the email can not be empty
+          </small>
+          <small *ngIf="email?.errors?.['email']" i18n>
+            Error: you need to set a valid email
+          </small>
+        </div>
+        <span class="p-float-label mb-7">
+          <input
+            pInputText
+            type="text"
+            name="first name"
+            id="first name"
+            class="rounded-md w-full border-gray-200"
+            placeholder="write the first name..."
+            i18n-placeholder
+            formControlName="firstName"
+          />
+          <label htmlFor="first name">First name</label>
+        </span>
+        <span class="p-float-label mb-7">
+          <input
+            pInputText
+            type="text"
+            name="last name"
+            id="last name"
+            class="rounded-md w-full border-gray-200"
+            placeholder="write the last name..."
+            i18n-placeholder
+            formControlName="lastName"
+          />
+          <label htmlFor="last name">Last name</label>
+        </span>
+        <div *ngIf="!isUpdate">
+          <label htmlFor="password" class="text-sm text-gray-500 pl-4">
+            Password
+          </label>
+          <div
+            class="p-inputgroup"
+            [ngClass]="{
+              'mb-2':
+                password?.invalid && (password?.dirty || password?.touched),
+              'mb-7': !(
+                password?.invalid &&
+                (password?.dirty || password?.touched)
+              )
+            }"
+          >
+            <input
+              (copy)="(false)"
+              (cut)="(false)"
+              (paste)="(false)"
+              pInputText
+              type="{{ showPass ? 'text' : 'password' }}"
+              name="password"
+              id="password"
+              class="w-full border-gray-200"
+              placeholder="write the password..."
+              i18n-placeholder
+              formControlName="password"
+            />
+            <button
+              type="button"
+              pButton
+              icon="pi {{ showPass ? 'pi-eye' : 'pi-eye-slash' }}"
+              ngClass="p-button-secondary"
+              (click)="showPassword()"
+            ></button>
+          </div>
+        </div>
+        <div
+          class="flex flex-col text-red-400 mb-7"
+          *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+        >
+          <small *ngIf="password?.errors?.['required']" i18n>
+            Error: you need to set a password
+          </small>
+          <small *ngIf="password?.errors?.['minlength']" i18n
+            >Error: you need
+            {{password?.errors?.['minlength']?.['requiredLength'] - password?.errors?.['minlength']?.['actualLength']}}
+            characters more to meet the minimum length of
+            {{password?.errors?.['minlength']?.['requiredLength']}}
+          </small>
+          <small *ngIf="password?.errors?.['maxlength']" i18n>
+            Error: you have
+            {{password?.errors?.['maxlength']?.['actualLength'] - password?.errors?.['maxlength']?.['requiredLength']}}
+            characters more than the maximum length of
+            {{password?.errors?.['maxlength']?.['requiredLength']}}
+          </small>
+        </div>
+        <span
+          *ngIf="!showPass && !isUpdate"
+          class="p-float-label"
+          [ngClass]="{
+            'mb-2':
+              confirmPassword?.invalid &&
+              (confirmPassword?.dirty || confirmPassword?.touched),
+            'mb-7': !(
+              confirmPassword?.invalid &&
+              (confirmPassword?.dirty || confirmPassword?.touched)
+            )
+          }"
+        >
+          <input
+            (copy)="(false)"
+            (cut)="(false)"
+            (paste)="(false)"
+            pInputText
+            type="password"
+            name="repeat-password"
+            id="repeat-password"
+            class="rounded-md w-full border-gray-200"
+            placeholder="repeat your password..."
+            i18n-placeholder
+            formControlName="confirmPassword"
+          />
+          <label htmlFor="repeat-password">Repeat password</label>
+        </span>
+        <div
+          class="flex flex-col text-red-400 mb-7"
+          *ngIf="
+            confirmPassword?.invalid &&
+            (confirmPassword?.dirty || confirmPassword?.touched)
+          "
+        >
+          <small *ngIf="confirmPassword?.errors?.['required']" i18n>
+            Error: you need to confirm the password
+          </small>
+          <small *ngIf="confirmPassword?.errors?.['equal']" i18n>
+            Error: the passwords are not equal
+          </small>
+        </div>
+        <div class="flex justify-end">
+          <p-button
+            type="submit"
+            styleClass="p-button-secondary"
+            [ngClass]="{
+              'cursor-pointer': !isFormInvalid,
+              'cursor-not-allowed': isFormInvalid
+            }"
+            [style]="{ 'margin-right': '0.5rem' }"
+            icon="pi {{ isUpdate ? 'pi-sync' : 'pi-user-plus' }}"
+            iconPos="left"
+            [label]="buttonLabel"
+            [disabled]="isFormInvalid"
+          >
+          </p-button>
+          <p-button
+            (click)="cancel()"
+            styleClass="p-button-warning"
+            icon="pi pi-times"
+            iconPos="left"
+            label="cancel"
+          >
+          </p-button>
+        </div>
+      </form>
+    </p-fieldset>
+  </div>
+</div>

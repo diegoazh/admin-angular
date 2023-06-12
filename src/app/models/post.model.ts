@@ -51,4 +51,19 @@ export class PostModel extends BaseModel {
       this.comments = data.comments.map((comment) => new CommentModel(comment));
     }
   }
+
+  public static isPost(data: any): data is PostModel {
+    if (typeof data === 'object') {
+      const keys = Object.keys(data);
+      return (
+        keys.includes('title') &&
+        keys.includes('content') &&
+        keys.includes('authorId') &&
+        keys.includes('comments') &&
+        keys.includes('tags')
+      );
+    }
+
+    return false;
+  }
 }

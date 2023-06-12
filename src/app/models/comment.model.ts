@@ -16,4 +16,17 @@ export class CommentModel extends BaseModel {
       postId: this.postId,
     } = data);
   }
+
+  public static isComment(data: any): data is CommentModel {
+    if (typeof data === 'object') {
+      const keys = Object.keys(data);
+      return (
+        keys.includes('content') &&
+        keys.includes('authorId') &&
+        keys.includes('postId')
+      );
+    }
+
+    return false;
+  }
 }

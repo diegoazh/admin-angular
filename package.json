@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "prettier --write ./src/*.{ts,scss,html} ./src/**/*.{ts,scss,html} && ng lint --fix",
+    "lint": "prettier --write './src/*.{ts,scss,html}' './src/**/*.{ts,scss,html}' && ng lint --fix",
     "prepare": "husky install",
     "lint-staged": "lint-staged"
   },

@@ -43,6 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {
     this.oauthService.configure(this.authCodeFlowConfig);
     this.oauthService.loadDiscoveryDocument();
+    this.oauthService.setupAutomaticSilentRefresh();
 
     this.titleService.setTitle(environment.siteTitle);
     this.primeConfig.ripple = true;

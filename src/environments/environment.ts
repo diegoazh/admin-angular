@@ -1,10 +1,13 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://app.starter.io',
+  api: {
+    url: 'https://app.starter.io',
+    key: 'Vj4xRjiPym0wfk80xhCd0tUseHU=',
+  },
   siteTitle: 'Admin Starter',
   auth: {
     issuer: 'https://auth.starter.io/realms/backend',
-    clientId: 'nestjs-app',
+    clientId: 'starter-api',
     clientSecret: 'QwslcqzF7Jkdz0cI8zjJ10l97uKxQ1P2',
     responseType: 'code',
     scope: 'openid profile email',

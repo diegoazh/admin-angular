@@ -1,0 +1,135 @@
+<div class="mt-6">
+  <p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+      <button
+        pButton
+        pRipple
+        i18n-label
+        label="New"
+        icon="pi pi-user-plus"
+        class="p-button-secondary"
+        style="margin-right: 0.5rem"
+        (click)="createUser()"
+      ></button>
+      <button
+        pButton
+        pRipple
+        i18n-label
+        label="Delete"
+        icon="pi pi-user-minus"
+        class="p-button-danger"
+        (click)="deleteSelectedUsers()"
+        [disabled]="!selectedUsers || !selectedUsers.length"
+      ></button>
+    </ng-template>
+  </p-toolbar>
+
+  <p-table
+    #dt
+    [value]="users"
+    [rows]="10"
+    [paginator]="true"
+    [globalFilterFields]="['username', 'firstName', 'lastName']"
+    [tableStyle]="{ 'min-width': '75rem' }"
+    [(selection)]="selectedUsers"
+    [rowHover]="true"
+    dataKey="id"
+    i18n-currentPageReportTemplate
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex items-center justify-between">
+        <h5 class="m-0" i18n>Manage Products</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="searchOnTable(dt, $event)"
+            i18n-placeholder
+            placeholder="Search..."
+            class="rounded-md"
+          />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 4rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="username" style="min-width: 15rem" i18n>
+          Username <p-sortIcon field="username"></p-sortIcon>
+        </th>
+        <th pSortableColumn="email" style="min-width: 15rem" i18n>
+          Email <p-sortIcon field="email"></p-sortIcon>
+        </th>
+        <th pSortableColumn="firstName" i18n>
+          First name <p-sortIcon field="firstName"></p-sortIcon>
+        </th>
+        <th pSortableColumn="lastName" i18n>
+          Last name <p-sortIcon field="lastName"></p-sortIcon>
+        </th>
+        <th i18n>Enabled</th>
+        <th i18n>Email verified</th>
+        <th style="min-width: 10rem" i18n>Required actions</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="user"></p-tableCheckbox>
+        </td>
+        <td>{{ user.username }}</td>
+        <td>
+          <p-tag severity="info">{{ user.email }}</p-tag>
+        </td>
+        <td class="capitalize">{{ user.firstName }}</td>
+        <td class="capitalize">{{ user.lastName }}</td>
+        <td>
+          <i
+            class="text-lg pi"
+            [ngClass]="{
+              'pi-check-circle text-green-500': user.enabled,
+              'pi-times-circle text-red-500': !user.enabled
+            }"
+          ></i>
+        </td>
+        <td>
+          <i
+            class="text-lg pi"
+            [ngClass]="{
+              'pi-check-circle text-green-500': user.emailVerified,
+              'pi-times-circle text-red-500': !user.emailVerified
+            }"
+          ></i>
+        </td>
+        <td>{{ user.requiredActions }}</td>
+        <td>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-user-edit"
+            class="p-button-rounded p-button-secondary"
+            style="margin-right: 0.5rem"
+            (click)="editUser(user)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-user-minus"
+            class="p-button-rounded p-button-danger"
+            (click)="deleteUser(user)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex items-center justify-content-between" i18n>
+        In total there are {{ users ? users.length : 0 }} users.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
