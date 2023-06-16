@@ -2,12 +2,15 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { filter } from 'rxjs/operators';
-import { SubscriptionsService } from '../../../shared/services';
+import { SubscriptionsService } from '../../shared/services';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 @Component({
+  standalone: true,
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.scss'],
+  imports: [BreadcrumbModule],
 })
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
   public static readonly ROUTE_DATA_BREADCRUMB = 'breadcrumb';

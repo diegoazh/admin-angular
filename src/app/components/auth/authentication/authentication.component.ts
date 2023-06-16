@@ -14,14 +14,15 @@ export class AuthenticationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const redirectUrl = localStorage.getItem('redirectUrl') || '/';
     this.authService
       .loadDiscoveryDocumentAndTryLogin()
       .then((result) => {
         console.info(`the login was ${result ? 'successful' : 'unsuccessful'}`);
-        const redirectUrl = localStorage.getItem('redirectUrl') || '/';
         this.router.navigate([redirectUrl]);
       })
       .catch((error) => {
+        this.router.navigate([redirectUrl]);
         console.error(`the login process failed: ${error}`);
       });
   }

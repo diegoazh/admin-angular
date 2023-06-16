@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NotFoundComponent } from '../components/general/not-found/not-found.component';
-import { NotImplementedComponent } from '../components/general/not-implemented/not-implemented.component';
+import { NotFoundComponent } from '../standalone/not-found/not-found.component';
+import { NotImplementedComponent } from '../standalone/not-implemented/not-implemented.component';
 import { AppLayoutComponent } from '../layout/app.layout.component';
 import { UsersComponent } from './users/users.component';
+import { PostsComponent } from './posts/posts.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 const routes: Routes = [
   {
@@ -14,6 +16,16 @@ const routes: Routes = [
         path: '',
         redirectTo: '/not-found',
         pathMatch: 'full',
+      },
+      {
+        path: 'articles',
+        component: PostsComponent,
+        data: { breadcrumbs: $localize`articles` },
+      },
+      {
+        path: 'categories',
+        component: CategoriesComponent,
+        data: { breadcrumbs: $localize`categories` },
       },
       {
         path: 'users',

@@ -1,0 +1,68 @@
+<div class="mt-6">
+  <p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+      <button
+        pButton
+        pRipple
+        i18n-label
+        label="New"
+        [icon]="createIcon"
+        class="p-button-secondary"
+        style="margin-right: 0.5rem"
+        (click)="createItem()"
+      ></button>
+      <button
+        pButton
+        pRipple
+        i18n-label
+        label="Delete"
+        [icon]="deleteAllIcon"
+        class="p-button-danger"
+        (click)="deleteSelectedItem()"
+        [disabled]="!selectedItems || !selectedItems.length"
+      ></button>
+    </ng-template>
+  </p-toolbar>
+
+  <p-table
+    #dt
+    [value]="items"
+    [rows]="10"
+    [paginator]="true"
+    [globalFilterFields]="globalFilterFields"
+    [tableStyle]="tableStyles"
+    [(selection)]="selectedItems"
+    [rowHover]="true"
+    [dataKey]="dataKey"
+    i18n-currentPageReportTemplate
+    [currentPageReportTemplate]="currentPageReportTemplate"
+    [showCurrentPageReport]="!!currentPageReportTemplate"
+  >
+    <ng-template pTemplate="caption">
+      <ng-container
+        *ngIf="captionTemplate"
+        [ngTemplateOutlet]="captionTemplate"
+        [ngTemplateOutletContext]="{ $implicit: dt }"
+      ></ng-container>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <ng-container
+        *ngIf="headerTemplate"
+        [ngTemplateOutlet]="headerTemplate"
+      ></ng-container>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <ng-container
+        *ngIf="bodyTemplate"
+        [ngTemplateOutlet]="bodyTemplate"
+        [ngTemplateOutletContext]="{ $implicit: item }"
+      ></ng-container>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <ng-container
+        *ngIf="summaryTemplate"
+        [ngTemplateOutlet]="summaryTemplate"
+      ></ng-container>
+    </ng-template>
+  </p-table>
+</div>

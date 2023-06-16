@@ -1,12 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { SubscriptionsService, ToastService } from '../../../shared/services';
+import { SubscriptionsService, ToastService } from '../../shared/services';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
+  standalone: true,
   selector: 'app-toast',
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss'],
   providers: [MessageService],
+  imports: [ToastModule],
 })
 export class ToastComponent implements OnInit, OnDestroy {
   constructor(

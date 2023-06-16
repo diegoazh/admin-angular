@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
+import { ToastComponent } from './standalone/toast/toast.component';
 import { AppLayoutModule } from './layout/app.layout.module';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
@@ -31,6 +32,7 @@ import { SharedModule } from './shared/shared.module';
     ComponentsModule,
     PagesModule,
     AppRoutingModule,
+    ToastComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -13,14 +13,6 @@ export class UsersComponent implements OnInit {
   constructor(private readonly apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.apiService.users.count().subscribe({
-      next: (data) => {
-        console.log(data);
-      },
-      error: (error: unknown) => {
-        console.error(error);
-      },
-    });
     this.apiService.users.find().subscribe({
       next: (users) => {
         this.users = users;
