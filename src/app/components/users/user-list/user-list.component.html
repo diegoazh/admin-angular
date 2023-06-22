@@ -2,7 +2,6 @@
   <app-table-crud
     [items]="users"
     [createFn]="createUser"
-    [editFn]="editUser"
     [deleteFn]="deleteUser"
     createIcon="pi pi-user-plus"
     deleteAllIcon="pi pi-user-minus"
@@ -11,21 +10,8 @@
     dataKey="id"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
   >
-    <ng-template appTableCrudTemplate="caption" let-dt>
-      <div class="flex items-center justify-between">
-        <h5 class="m-0" i18n>Manage users</h5>
-        <span class="p-input-icon-left">
-          <i class="pi pi-search"></i>
-          <input
-            pInputText
-            type="text"
-            (input)="searchOnTable(dt, $event)"
-            i18n-placeholder
-            placeholder="Search..."
-            class="rounded-md"
-          />
-        </span>
-      </div>
+    <ng-template appTableCrudTemplate="captionText" let-dt>
+      <h5 class="m-0" i18n>Manage users</h5>
     </ng-template>
     <ng-template appTableCrudTemplate="header">
       <tr>

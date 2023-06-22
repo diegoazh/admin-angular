@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { ApiService, ToastService } from '../../../shared/services';
-import { UserModel } from '../../../models';
+import { TagModel } from '../../../models';
 
 @Component({
-  selector: 'app-delete-user',
-  templateUrl: './delete-user.component.html',
-  styleUrls: ['./delete-user.component.scss'],
+  selector: 'app-delete-tag',
+  templateUrl: './delete-tag.component.html',
+  styleUrls: ['./delete-tag.component.scss'],
 })
-export class DeleteUserComponent implements OnInit {
-  public user?: UserModel;
+export class DeleteTagComponent implements OnInit {
+  public tag?: TagModel;
 
   constructor(
     private readonly dialogRef: DynamicDialogRef,
@@ -19,24 +19,24 @@ export class DeleteUserComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.user = this.dialogConfig.data?.user;
+    this.tag = this.dialogConfig.data?.tag;
   }
 
   public confirm() {
-    if (this.user) {
-      this.apiService.users.remove$(this.user.id).subscribe({
+    if (this.tag) {
+      this.apiService.tags.remove$(this.tag.id).subscribe({
         next: () => {
           this.toastService.send({
-            detail: $localize`The user was deleted successfully`,
+            detail: $localize`The tag was deleted successfully`,
             severity: 'success',
           });
 
-          this.dialogRef.close(this.user);
+          this.dialogRef.close({ ...this.tag });
         },
         error: (error: unknown) => {
           console.error(error);
           this.toastService.send({
-            detail: $localize`The user can not be deleted`,
+            detail: $localize`The tag can't be deleted`,
             severity: 'error',
           });
 
@@ -45,7 +45,7 @@ export class DeleteUserComponent implements OnInit {
       });
     } else {
       this.toastService.send({
-        detail: $localize`The user to delete is not defined`,
+        detail: $localize`The tag to delete is not defined`,
         severity: 'info',
       });
 

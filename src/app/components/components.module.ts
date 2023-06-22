@@ -18,23 +18,29 @@ import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { SharedModule } from '../shared/shared.module';
-import { AuthenticationComponent } from './auth/authentication/authentication.component';
-import { LoginComponent } from './auth/login/login.component';
-import { CreateUserFormComponent } from './users/create-user-form/create-user-form.component';
-import { DeleteUserComponent } from './users/delete-user/delete-user.component';
-import { UsersListComponent } from './users/user-list/users-list.component';
 import {
   TableCrudComponent,
   TableCrudTemplateDirective,
 } from '../standalone/table-crud/table-crud.component';
+import { AuthenticationComponent } from './auth/authentication/authentication.component';
+import { LoginComponent } from './auth/login/login.component';
+import { CreateTagFormComponent } from './tags/create-tag-form/create-tag-form.component';
+import { DeleteTagComponent } from './tags/delete-tag/delete-tag.component';
+import { TagListComponent } from './tags/tag-list/tag-list.component';
+import { CreateUserFormComponent } from './users/create-user-form/create-user-form.component';
+import { DeleteUserComponent } from './users/delete-user/delete-user.component';
+import { UserListComponent } from './users/user-list/user-list.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     AuthenticationComponent,
-    UsersListComponent,
+    UserListComponent,
     CreateUserFormComponent,
     DeleteUserComponent,
+    TagListComponent,
+    CreateTagFormComponent,
+    DeleteTagComponent,
   ],
   imports: [
     SharedModule,
@@ -59,6 +65,6 @@ import {
     DynamicDialogRef,
     DynamicDialogConfig,
   ],
-  exports: [AuthenticationComponent, UsersListComponent],
+  exports: [AuthenticationComponent, UserListComponent, TagListComponent],
 })
 export class ComponentsModule {}

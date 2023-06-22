@@ -110,7 +110,7 @@ export class CreateUserFormComponent implements OnInit {
     this.user.password = this.userForm.get('password')?.value || '';
 
     if (!this.isUpdate) {
-      this.apiService.users.create(this.user).subscribe({
+      this.apiService.users.create$(this.user).subscribe({
         next: (user) => {
           this.toastService.send({
             severity: 'success',
@@ -130,7 +130,7 @@ export class CreateUserFormComponent implements OnInit {
     } else {
       const id = this.dialogConfig.data?.user?.id;
       const data = { ...this.dialogConfig.data?.user, ...this.user };
-      this.apiService.users.overwrite(id, data).subscribe({
+      this.apiService.users.overwrite$(id, data).subscribe({
         next: (user) => {
           this.toastService.send({
             severity: 'success',
