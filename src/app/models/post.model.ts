@@ -17,7 +17,7 @@ export class PostModel extends BaseModel {
 
   public images: string[];
 
-  public type: typeof PostType[keyof typeof PostType];
+  public type: (typeof PostType)[keyof typeof PostType];
 
   public published: boolean;
 
