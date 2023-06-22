@@ -9,7 +9,7 @@
         [icon]="createIcon"
         class="p-button-secondary"
         style="margin-right: 0.5rem"
-        (click)="createItem()"
+        (click)="createFn()"
       ></button>
       <button
         pButton
@@ -39,11 +39,23 @@
     [showCurrentPageReport]="!!currentPageReportTemplate"
   >
     <ng-template pTemplate="caption">
-      <ng-container
-        *ngIf="captionTemplate"
-        [ngTemplateOutlet]="captionTemplate"
-        [ngTemplateOutletContext]="{ $implicit: dt }"
-      ></ng-container>
+      <div class="flex items-center justify-between">
+        <ng-container
+          *ngIf="captionTextTemplate"
+          [ngTemplateOutlet]="captionTextTemplate"
+        ></ng-container>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="searchOnTable(dt, $event)"
+            i18n-placeholder
+            placeholder="Search..."
+            class="rounded-md"
+          />
+        </span>
+      </div>
     </ng-template>
     <ng-template pTemplate="header">
       <ng-container

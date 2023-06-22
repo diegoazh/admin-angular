@@ -1,23 +1,29 @@
-import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
+import { AsyncPipe, NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
 import {
   AfterViewInit,
   Component,
   ContentChildren,
   Directive,
   Input,
+  OnDestroy,
+  OnInit,
   QueryList,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { Table, TableModule, TableService } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToolbarModule } from 'primeng/toolbar';
-import { Observable } from 'rxjs';
+import { ICrudServices } from '../../shared/interfaces';
+import { AppModels } from '../../shared/types';
 
-export function tableFactory(wrapper: TableCrudComponent) {
+export function tableFactory<T extends AppModels>(
+  wrapper: TableCrudComponent<T>,
+) {
   return wrapper.table;
 }
 
@@ -26,7 +32,7 @@ export function tableFactory(wrapper: TableCrudComponent) {
   selector: '[appTableCrudTemplate]',
 })
 export class TableCrudTemplateDirective {
-  @Input() appTableCrudTemplate?: 'caption' | 'header' | 'body' | 'summary';
+  @Input() appTableCrudTemplate?: 'captionText' | 'header' | 'body' | 'summary';
 
   constructor(public templateRef: TemplateRef<unknown>) {}
 }
@@ -46,6 +52,8 @@ export class TableCrudTemplateDirective {
     RippleModule,
     TagModule,
     TableCrudTemplateDirective,
+    InputTextModule,
+    AsyncPipe,
   ],
   providers: [
     TableService, // from old imports
@@ -56,26 +64,12 @@ export class TableCrudTemplateDirective {
     },
   ],
 })
-export class TableCrudComponent<T extends { id: string } = any>
-  implements AfterViewInit
-{
+export class TableCrudComponent<T extends AppModels> implements AfterViewInit {
   @Input() items: T[] = [];
 
-  @Input() createFn: () => Observable<T> = () => {
-    return console.info('not implemented') as any;
-  };
+  @Input() createFn!: () => void | Promise<void>;
 
-  @Input() editFn: (item: T) => Observable<T> = (item: T) => {
-    return console.info(
-      `not implemented, the item is: ${JSON.stringify(item)}`,
-    ) as any;
-  };
-
-  @Input() deleteFn: (item: T) => Observable<T> = (item: T) => {
-    return console.info(
-      `not implemented, de item is: ${JSON.stringify(item)}`,
-    ) as any;
-  };
+  @Input() deleteFn!: (item: T) => void | Promise<void>;
 
   @Input() createIcon = 'pi pi-plus';
 
@@ -92,16 +86,17 @@ export class TableCrudComponent<T extends { id: string } = any>
   @Input() currentPageReportTemplate =
     'Showing {first} to {last} of {totalRecords} entries';
 
-  @ViewChild('dt', { static: true }) table?: Table;
+  @ViewChild('dt', { static: true })
+  public table?: Table;
 
   @ContentChildren(TableCrudTemplateDirective)
-  templates?: QueryList<TableCrudTemplateDirective>;
-
-  public formRef?: DynamicDialogRef;
+  public templates?: QueryList<TableCrudTemplateDirective>;
 
   public selectedItems: T[] = [];
 
-  public captionTemplate?: TemplateRef<unknown>;
+  public formRef?: DynamicDialogRef;
+
+  public captionTextTemplate?: TemplateRef<unknown>;
 
   public headerTemplate?: TemplateRef<unknown>;
 
@@ -111,9 +106,9 @@ export class TableCrudComponent<T extends { id: string } = any>
 
   ngAfterViewInit(): void {
     this.templates?.forEach((template) => {
-      if (template.appTableCrudTemplate === 'caption') {
+      if (template.appTableCrudTemplate === 'captionText') {
         setTimeout(() => {
-          this.captionTemplate = template.templateRef;
+          this.captionTextTemplate = template.templateRef;
         });
       }
 
@@ -137,58 +132,13 @@ export class TableCrudComponent<T extends { id: string } = any>
     });
   }
 
-  public createItem(): void {
-    this.createFn().subscribe({
-      next: (item) => {
-        this.addOrRemoveItem(item);
-      },
-      error: (error: unknown) => {
-        console.error(error);
-      },
-    });
-  }
-
   public deleteSelectedItem(): void {
-    this.selectedItems.forEach((item) => this.deleteItem(item));
-  }
-
-  public editItem(item: T): void {
-    this.editFn(item).subscribe({
-      next: (item?) => {
-        if (item) {
-          this.addOrRemoveItem(item, true);
-        }
-      },
-      error: (error: unknown) => {
-        console.error(error);
-      },
-    });
-  }
-
-  public deleteItem(item: T): void {
-    this.deleteFn(item).subscribe({
-      next: (item) => {
-        if (item) {
-          this.addOrRemoveItem(item);
-        }
-      },
-      error: (error: unknown) => {
-        console.error(error);
-      },
+    this.selectedItems.forEach((item) => {
+      this.deleteFn(item);
     });
   }
 
   public searchOnTable(dt: Table, event: Event): void {
     dt.filterGlobal((event.target as HTMLInputElement).value, 'contains');
-  }
-
-  private addOrRemoveItem(item: T, add = false): void {
-    const index = this.items.findIndex((value) => value?.id === item?.id);
-
-    if (index >= 0) {
-      add ? this.items.splice(index, 1, item) : this.items.splice(index, 1);
-    } else {
-      this.items.push(item);
-    }
   }
 }

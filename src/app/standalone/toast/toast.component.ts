@@ -21,7 +21,7 @@ export class ToastComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subsService.add(
       ToastComponent.name,
-      this.toastService.messages.subscribe((data) => {
+      this.toastService.messages$.subscribe((data) => {
         if (Array.isArray(data)) {
           this.messageService.addAll(data);
         } else {
