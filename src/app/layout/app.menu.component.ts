@@ -29,7 +29,7 @@ export class AppMenuComponent implements OnInit {
           {
             label: $localize`Articles`,
             icon: 'pi pi-book',
-            routerLink: ['/app/posts'],
+            routerLink: ['/app/articles'],
           },
           {
             label: $localize`Categories`,
