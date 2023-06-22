@@ -2,17 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RippleModule } from 'primeng/ripple';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
-import { ToastComponent } from './standalone/toast/toast.component';
 import { AppLayoutModule } from './layout/app.layout.module';
 import { PagesModule } from './pages/pages.module';
+import { UnauthorizedInterceptor } from './shared/interceptors/unauthorized.interceptor';
 import { SharedModule } from './shared/shared.module';
+import { ToastComponent } from './standalone/toast/toast.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +35,13 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     ToastComponent,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorizedInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
