@@ -12,28 +12,21 @@ import { IApiResponse } from '../interfaces';
 import {
   ApiModels,
   ApiResponse,
+  AppModels,
   DataApiResponse,
   DefineAppModels,
 } from '../types';
 import { BaseApiService } from './base-api.service';
 
-export class ApiModelFactory<
-  T extends
-    | UserModel
-    | ProfileModel
-    | PostModel
-    | CategoryModel
-    | TagModel
-    | CommentModel,
-> {
+export class ApiModelFactory<T extends AppModels> {
   private api?: BaseApiService<T>;
 
-  public build(resource: ApiModels, http: HttpClient) {
+  public build(resource: ApiModels, http: HttpClient): this {
     this.api = new BaseApiService<T>(resource, http);
     return this;
   }
 
-  public count(): Observable<number> {
+  public count$(): Observable<number> {
     if (!this.api) {
       throw new Error(
         'You need to build the api first using the "build" method',
@@ -43,7 +36,7 @@ export class ApiModelFactory<
     return this.api.count().pipe(map(this.mapCallback));
   }
 
-  public find(): Observable<ApiResponse<T[]>> {
+  public find$(): Observable<ApiResponse<T[]>> {
     if (!this.api) {
       throw new Error(
         'You need to build the api first using the "build" method',
@@ -53,7 +46,7 @@ export class ApiModelFactory<
     return this.api.find().pipe(map(this.mapCallback));
   }
 
-  public findById(id: string): Observable<ApiResponse<T>> {
+  public findById$(id: string): Observable<ApiResponse<T>> {
     if (!this.api) {
       throw new Error(
         'You need to build the api first using the "build" method',
@@ -63,7 +56,7 @@ export class ApiModelFactory<
     return this.api.findById(id).pipe(map(this.mapCallback));
   }
 
-  public create<U>(data: U): Observable<ApiResponse<T>> {
+  public create$<U>(data: U): Observable<ApiResponse<T>> {
     if (!this.api) {
       throw new Error(
         'You need to build the api first using the "build" method',
@@ -73,7 +66,7 @@ export class ApiModelFactory<
     return this.api.create(data).pipe(map(this.mapCallback));
   }
 
-  public overwrite(id: string, data: T): Observable<ApiResponse<T>> {
+  public overwrite$(id: string, data: T): Observable<ApiResponse<T>> {
     if (!this.api) {
       throw new Error(
         'You need to build the api first using the "build" method',
@@ -83,7 +76,7 @@ export class ApiModelFactory<
     return this.api.overwrite(id, data).pipe(map(this.mapCallback));
   }
 
-  public update(id: string, data: Partial<T>): Observable<ApiResponse<T>> {
+  public update$(id: string, data: Partial<T>): Observable<ApiResponse<T>> {
     if (!this.api) {
       throw new Error(
         'You need to build the api first using the "build" method',
@@ -93,7 +86,7 @@ export class ApiModelFactory<
     return this.api.updated(id, data).pipe(map(this.mapCallback));
   }
 
-  public remove(id: string): Observable<number | void> {
+  public remove$(id: string): Observable<number | void> {
     if (!this.api) {
       throw new Error(
         'You need to build the api first using the "build" method',
@@ -103,15 +96,9 @@ export class ApiModelFactory<
     return this.api.remove(id).pipe(map(this.mapCallback));
   }
 
-  private buildSingleModel<
-    T extends
-      | UserModel
-      | PostModel
-      | CategoryModel
-      | CommentModel
-      | ProfileModel
-      | TagModel,
-  >(data: { [key: string]: any }): DefineAppModels<T> {
+  private buildSingleModel<T extends AppModels>(data: {
+    [key: string]: any;
+  }): DefineAppModels<T> {
     if (!this.api) {
       throw new Error(
         'You need to build the api first using the "build" method',

@@ -16,12 +16,12 @@ export type ApiModels =
   | 'users';
 
 export type AppModels =
-  | UserModel
-  | PostModel
   | CategoryModel
   | CommentModel
+  | PostModel
   | ProfileModel
-  | TagModel;
+  | TagModel
+  | UserModel;
 
 export type DataApiResponse =
   | AppModels[]
@@ -31,7 +31,7 @@ export type DataApiResponse =
   | void
   | { error?: string; errorMessage?: string };
 
-export type DefineAppModels<T extends AppModels | Array<AppModels>> =
+export type DefineAppModels<T extends AppModels | AppModels[]> =
   T extends UserModel[]
     ? UserModel[]
     : T extends PostModel[]

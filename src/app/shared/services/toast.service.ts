@@ -7,9 +7,9 @@ import { Subject } from 'rxjs';
 })
 export class ToastService {
   private welcomeMessage = false;
-  private emitter = new Subject<Message | Message[]>();
+  private _emitter$_ = new Subject<Message | Message[]>();
 
-  public messages = this.emitter.asObservable();
+  public messages$ = this._emitter$_.asObservable();
 
   get welcomeMessageStatus() {
     return this.welcomeMessage;
@@ -20,10 +20,10 @@ export class ToastService {
   }
 
   send(data: Message | Message[]) {
-    this.emitter.next(data);
+    this._emitter$_.next(data);
   }
 
   complete() {
-    this.emitter.complete();
+    this._emitter$_.complete();
   }
 }
