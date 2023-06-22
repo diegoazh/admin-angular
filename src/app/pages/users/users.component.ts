@@ -1,25 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { UserModel } from '../../models';
-import { ApiService } from '../../shared/services';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
 })
-export class UsersComponent implements OnInit {
-  public users: UserModel[] = [];
-
-  constructor(private readonly apiService: ApiService) {}
+export class UsersComponent implements OnInit, OnDestroy {
+  constructor(public readonly userService: UserService) {}
 
   ngOnInit(): void {
-    this.apiService.users.find().subscribe({
-      next: (users) => {
-        this.users = users;
-      },
-      error: (error: unknown) => {
-        console.error(error);
-      },
-    });
+    this.userService.findAll();
+  }
+
+  ngOnDestroy(): void {
+    this.userService.destroy();
   }
 }

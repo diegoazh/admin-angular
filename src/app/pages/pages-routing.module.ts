@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppLayoutComponent } from '../layout/app.layout.component';
 import { NotFoundComponent } from '../standalone/not-found/not-found.component';
 import { NotImplementedComponent } from '../standalone/not-implemented/not-implemented.component';
-import { AppLayoutComponent } from '../layout/app.layout.component';
-import { UsersComponent } from './users/users.component';
-import { PostsComponent } from './posts/posts.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { PostsComponent } from './posts/posts.component';
+import { TagsComponent } from './tags/tags.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
         path: 'categories',
         component: CategoriesComponent,
         data: { breadcrumbs: $localize`categories` },
+      },
+      {
+        path: 'tags',
+        component: TagsComponent,
+        data: { breadcrumbs: $localize`tags` },
       },
       {
         path: 'users',
