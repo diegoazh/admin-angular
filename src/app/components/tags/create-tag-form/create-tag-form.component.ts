@@ -53,6 +53,7 @@ export class CreateTagFormComponent implements OnInit {
     }
 
     if (this.dialogConfig.data?.tag) {
+      this.tag = { ...this.dialogConfig.data?.tag };
       this.tagForm?.get('name')?.setValue(this.dialogConfig.data?.tag?.name);
     }
   }

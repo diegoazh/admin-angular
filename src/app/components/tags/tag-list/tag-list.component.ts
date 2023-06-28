@@ -1,45 +1,24 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TagModel } from '../../../models';
-import { ICrudServices } from '../../../shared/interfaces';
-import { SubscriptionsService } from '../../../shared/services';
 import { CreateTagFormComponent } from '../create-tag-form/create-tag-form.component';
 import { DeleteTagComponent } from '../delete-tag/delete-tag.component';
+import { TagService } from '../../../pages/tags/tag.service';
 
 @Component({
   selector: 'app-tag-list',
   templateUrl: './tag-list.component.html',
   styleUrls: ['./tag-list.component.scss'],
 })
-export class TagListComponent implements OnInit, OnDestroy {
-  @Input() service!: ICrudServices<TagModel>;
+export class TagListComponent {
+  @Input() tags: TagModel[] = [];
 
   public formRef?: DynamicDialogRef;
 
-  public tags: TagModel[] = [];
-
   constructor(
     private readonly dialogService: DialogService,
-    private readonly subscriptionsSvc: SubscriptionsService,
+    private readonly tagService: TagService,
   ) {}
-
-  ngOnInit(): void {
-    this.subscriptionsSvc.add(
-      TagListComponent.name,
-      this.service.items$.subscribe({
-        next: (tags) => {
-          this.tags = tags;
-        },
-        error: (error: unknown) => {
-          console.error(error);
-        },
-      }),
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptionsSvc.unsubscribe(TagListComponent.name);
-  }
 
   public createTag = (): void => {
     this.formRef = this.dialogService.open(CreateTagFormComponent, {
@@ -49,7 +28,7 @@ export class TagListComponent implements OnInit, OnDestroy {
 
     this.formRef.onClose.subscribe({
       next: (tag) => {
-        this.service.addOrRemoveItem({ item: tag });
+        this.tagService.addOrRemoveItem({ item: tag });
       },
       error: (error: unknown) => {
         console.error(error);
@@ -69,7 +48,7 @@ export class TagListComponent implements OnInit, OnDestroy {
 
     this.formRef.onClose.subscribe({
       next: (tag) => {
-        this.service.addOrRemoveItem({ item: tag, overwrite: true });
+        this.tagService.addOrRemoveItem({ item: tag, overwrite: true });
       },
       error: (error: unknown) => {
         console.error(error);
@@ -88,7 +67,7 @@ export class TagListComponent implements OnInit, OnDestroy {
 
     this.formRef.onClose.subscribe({
       next: (tag) => {
-        this.service.addOrRemoveItem({ item: tag });
+        this.tagService.addOrRemoveItem({ item: tag });
       },
       error: (error: unknown) => {
         console.error(error);
