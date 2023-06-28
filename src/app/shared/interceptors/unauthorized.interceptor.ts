@@ -1,4 +1,5 @@
 import {
+  HttpErrorResponse,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
@@ -7,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, filter, tap } from 'rxjs';
 
 @Injectable()
 export class UnauthorizedInterceptor implements HttpInterceptor {
@@ -18,12 +19,22 @@ export class UnauthorizedInterceptor implements HttpInterceptor {
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-      map((event: HttpEvent<unknown>) => {
-        if (event instanceof HttpResponse && event.status === 401) {
-          this.router.navigateByUrl('/login');
-        }
+      filter((event) => event.type !== 0), // Skip `sent` event
+      tap({
+        next: (event: HttpEvent<unknown>) => {
+          if (event instanceof HttpResponse && event.status === 401) {
+            this.router.navigateByUrl('/login');
+          }
 
-        return event;
+          return event;
+        },
+        error: (error: unknown) => {
+          if (error instanceof HttpErrorResponse) {
+            if (error.status === 401) {
+              this.router.navigateByUrl('/login');
+            }
+          }
+        },
       }),
     );
   }
