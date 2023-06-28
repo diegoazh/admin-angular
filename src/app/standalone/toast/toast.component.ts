@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { SubscriptionsService, ToastService } from '../../shared/services';
+import {
+  SubscriptionsManagerService,
+  ToastService,
+} from '../../shared/services';
 import { ToastModule } from 'primeng/toast';
 
 @Component({
@@ -15,11 +18,11 @@ export class ToastComponent implements OnInit, OnDestroy {
   constructor(
     private readonly messageService: MessageService,
     private readonly toastService: ToastService,
-    private readonly subsService: SubscriptionsService,
+    private readonly subsManager: SubscriptionsManagerService,
   ) {}
 
   ngOnInit(): void {
-    this.subsService.add(
+    this.subsManager.add(
       ToastComponent.name,
       this.toastService.messages$.subscribe((data) => {
         if (Array.isArray(data)) {
@@ -32,6 +35,6 @@ export class ToastComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subsService.unsubscribe(ToastComponent.name);
+    this.subsManager.unsubscribe(ToastComponent.name);
   }
 }

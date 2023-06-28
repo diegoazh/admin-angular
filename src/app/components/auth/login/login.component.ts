@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { SubscriptionsService } from '../../../shared/services';
+import { SubscriptionsManagerService } from '../../../shared/services';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly authService: OAuthService,
-    private readonly subsService: SubscriptionsService,
+    private readonly subsManager: SubscriptionsManagerService,
   ) {}
 
   public ngOnInit(): void {
@@ -36,10 +36,10 @@ export class LoginComponent implements OnInit, OnDestroy {
         console.error(`error on logout: ${error}`);
       });
 
-    this.subsService.add(LoginComponent.name, sub);
+    this.subsManager.add(LoginComponent.name, sub);
   }
 
   ngOnDestroy(): void {
-    this.subsService.unsubscribe(LoginComponent.name);
+    this.subsManager.unsubscribe(LoginComponent.name);
   }
 }

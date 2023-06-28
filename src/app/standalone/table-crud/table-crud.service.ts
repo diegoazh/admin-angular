@@ -41,7 +41,7 @@ export abstract class TableCrudService<T extends AppModels>
       this._store.push(item);
     }
 
-    this._items$_.next(this.items);
+    this._items$_.next(this._store);
   }
 
   public destroy() {

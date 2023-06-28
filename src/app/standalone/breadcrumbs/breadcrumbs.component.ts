@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { filter } from 'rxjs/operators';
-import { SubscriptionsService } from '../../shared/services';
+import { SubscriptionsManagerService } from '../../shared/services';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 @Component({
@@ -21,7 +21,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
   constructor(
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly subsService: SubscriptionsService,
+    private readonly subsManager: SubscriptionsManagerService,
   ) {}
 
   ngOnInit() {
@@ -41,11 +41,11 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
         () =>
           (this.breadcrumb = this.createBreadcrumbs(this.activatedRoute.root)),
       );
-    this.subsService.add(BreadcrumbsComponent.name, sub);
+    this.subsManager.add(BreadcrumbsComponent.name, sub);
   }
 
   ngOnDestroy(): void {
-    this.subsService.unsubscribe(BreadcrumbsComponent.name);
+    this.subsManager.unsubscribe(BreadcrumbsComponent.name);
   }
 
   private createBreadcrumbs(

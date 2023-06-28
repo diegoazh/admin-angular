@@ -11,7 +11,7 @@ import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { PrimeNGConfig } from 'primeng/api';
 import { environment } from '../environments/environment';
 import { DarkModeService, LocatorService } from './shared/services';
-import { SubscriptionsService } from './shared/services';
+import { SubscriptionsManagerService } from './shared/services';
 
 @Component({
   selector: 'app-root',
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly titleService: Title,
     private readonly injector: Injector,
     private readonly oauthService: OAuthService,
-    private readonly subsService: SubscriptionsService,
+    private readonly subsManager: SubscriptionsManagerService,
   ) {
     this.oauthService.configure(this.authCodeFlowConfig);
     this.oauthService.loadDiscoveryDocument();
@@ -66,10 +66,10 @@ export class AppComponent implements OnInit, OnDestroy {
       },
     });
 
-    this.subsService.add(AppComponent.name, sub);
+    this.subsManager.add(AppComponent.name, sub);
   }
 
   ngOnDestroy(): void {
-    this.subsService.unsubscribe(AppComponent.name);
+    this.subsManager.unsubscribe(AppComponent.name);
   }
 }
