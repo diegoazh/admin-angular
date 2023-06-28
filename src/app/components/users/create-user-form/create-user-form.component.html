@@ -20,6 +20,7 @@
             placeholder="write the username..."
             i18n-placeholder
             formControlName="username"
+            (enter)="submit()"
           />
           <label htmlFor="username">Username</label>
         </span>
@@ -59,6 +60,7 @@
             placeholder="write the email..."
             i18n-placeholder
             formControlName="email"
+            (enter)="submit()"
           />
           <label htmlFor="email">Email</label>
         </span>
@@ -83,6 +85,7 @@
             placeholder="write the first name..."
             i18n-placeholder
             formControlName="firstName"
+            (enter)="submit()"
           />
           <label htmlFor="first name">First name</label>
         </span>
@@ -96,6 +99,7 @@
             placeholder="write the last name..."
             i18n-placeholder
             formControlName="lastName"
+            (enter)="submit()"
           />
           <label htmlFor="last name">Last name</label>
         </span>
@@ -126,6 +130,7 @@
               placeholder="write the password..."
               i18n-placeholder
               formControlName="password"
+              (enter)="showPass ? submit() : undefined"
             />
             <button
               type="button"
@@ -181,6 +186,7 @@
             placeholder="repeat your password..."
             i18n-placeholder
             formControlName="confirmPassword"
+            (enter)="!showPass ? submit() : undefined"
           />
           <label htmlFor="repeat-password">Repeat password</label>
         </span>

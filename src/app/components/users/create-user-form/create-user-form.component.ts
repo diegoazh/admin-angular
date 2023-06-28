@@ -87,6 +87,7 @@ export class CreateUserFormComponent implements OnInit {
     }
 
     if (this.dialogConfig.data?.user) {
+      this.user = { ...this.dialogConfig.data?.user };
       this.userForm
         ?.get('username')
         ?.setValue(this.dialogConfig.data?.user?.username);

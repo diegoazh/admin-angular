@@ -1,46 +1,25 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { UserModel } from '../../../models';
-import { ICrudServices } from '../../../shared/interfaces';
+import { UserService } from '../../../pages/users/user.service';
 import { CreateUserFormComponent } from '../create-user-form/create-user-form.component';
 import { DeleteUserComponent } from '../delete-user/delete-user.component';
-import { SubscriptionsService } from '../../../shared/services';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
 })
-export class UserListComponent implements OnInit, OnDestroy {
-  @Input() service!: ICrudServices<UserModel>;
+export class UserListComponent {
+  @Input() users: UserModel[] = [];
 
   public formRef?: DynamicDialogRef;
 
-  public users: UserModel[] = [];
-
   constructor(
+    private readonly userService: UserService,
     private readonly dialogService: DialogService,
-    private readonly subscriptionsSvc: SubscriptionsService,
   ) {}
-
-  ngOnInit(): void {
-    this.subscriptionsSvc.add(
-      UserListComponent.name,
-      this.service.items$.subscribe({
-        next: (users) => {
-          this.users = users;
-        },
-        error: (error: unknown) => {
-          console.error(error);
-        },
-      }),
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptionsSvc.unsubscribe(UserListComponent.name);
-  }
 
   public createUser = (): void => {
     this.formRef = this.dialogService.open(CreateUserFormComponent, {
@@ -50,7 +29,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
     this.formRef.onClose.subscribe({
       next: (user) => {
-        this.service.addOrRemoveItem({ item: user });
+        this.userService.addOrRemoveItem({ item: user });
       },
       error: (error: unknown) => {
         console.error(error);
@@ -70,7 +49,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
     this.formRef.onClose.subscribe({
       next: (user) => {
-        this.service.addOrRemoveItem({ item: user, overwrite: true });
+        this.userService.addOrRemoveItem({ item: user, overwrite: true });
       },
       error: (error: unknown) => {
         console.error(error);
@@ -89,7 +68,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
     this.formRef.onClose.subscribe({
       next: (user) => {
-        this.service.addOrRemoveItem({ item: user });
+        this.userService.addOrRemoveItem({ item: user });
       },
       error: (error: unknown) => {
         console.error(error);
