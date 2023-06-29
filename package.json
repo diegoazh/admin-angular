@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "start": "pnpm run i18n && ng serve",
+    "build": "pnpm run i18n && ng build",
+    "watch": "pnpm run i18n && ng build --watch --configuration development",
     "test": "ng test",
     "lint": "prettier --write './src/*.{ts,scss,html}' './src/**/*.{ts,scss,html}' && ng lint --fix",
     "prepare": "husky install",
