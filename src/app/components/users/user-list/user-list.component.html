@@ -41,9 +41,9 @@
         <td>
           <p-tableCheckbox [value]="user"></p-tableCheckbox>
         </td>
-        <td>{{ user.username }}</td>
+        <td class="lowercase">{{ user.username }}</td>
         <td>
-          <p-tag severity="info">{{ user.email }}</p-tag>
+          <p-tag severity="info" class="lowercase">{{ user.email }}</p-tag>
         </td>
         <td class="capitalize">{{ user.firstName }}</td>
         <td class="capitalize">{{ user.lastName }}</td>

@@ -30,6 +30,9 @@ import { TagListComponent } from './tags/tag-list/tag-list.component';
 import { CreateUserFormComponent } from './users/create-user-form/create-user-form.component';
 import { DeleteUserComponent } from './users/delete-user/delete-user.component';
 import { UserListComponent } from './users/user-list/user-list.component';
+import { CategoryListComponent } from './categories/category-list/category-list.component';
+import { CreateCategoryFormComponent } from './categories/create-category-form/create-category-form.component';
+import { DeleteCategoryComponent } from './categories/delete-category/delete-category.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import { UserListComponent } from './users/user-list/user-list.component';
     TagListComponent,
     CreateTagFormComponent,
     DeleteTagComponent,
+    CategoryListComponent,
+    CreateCategoryFormComponent,
+    DeleteCategoryComponent,
   ],
   imports: [
     SharedModule,
@@ -65,6 +71,11 @@ import { UserListComponent } from './users/user-list/user-list.component';
     DynamicDialogRef,
     DynamicDialogConfig,
   ],
-  exports: [AuthenticationComponent, UserListComponent, TagListComponent],
+  exports: [
+    AuthenticationComponent,
+    UserListComponent,
+    TagListComponent,
+    CategoryListComponent,
+  ],
 })
 export class ComponentsModule {}

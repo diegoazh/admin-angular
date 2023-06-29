@@ -104,10 +104,13 @@ export class CreateUserFormComponent implements OnInit {
   }
 
   public submit(): void {
-    this.user.email = this.userForm.get('email')?.value || '';
-    this.user.username = this.userForm.get('username')?.value || '';
-    this.user.firstName = this.userForm.get('firstName')?.value || '';
-    this.user.lastName = this.userForm.get('lastName')?.value || '';
+    this.user.email = this.userForm.get('email')?.value?.lowerCase() || '';
+    this.user.username =
+      this.userForm.get('username')?.value?.lowerCase() || '';
+    this.user.firstName =
+      this.userForm.get('firstName')?.value?.lowerCase() || '';
+    this.user.lastName =
+      this.userForm.get('lastName')?.value?.lowerCase() || '';
     this.user.password = this.userForm.get('password')?.value || '';
 
     if (!this.isUpdate) {

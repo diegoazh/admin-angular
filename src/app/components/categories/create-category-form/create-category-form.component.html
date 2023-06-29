@@ -1,0 +1,71 @@
+<div class="flex">
+  <div class="flex-col w-full">
+    <p-fieldset legend="Tag data" styleClass="p-2">
+      <form [formGroup]="categoryForm" (ngSubmit)="submit()">
+        <span
+          class="p-float-label"
+          [ngClass]="{
+            'mb-2': name?.invalid && (name?.dirty || name?.touched),
+            'mb-7': !(name?.invalid && (name?.dirty || name?.touched))
+          }"
+        >
+          <input
+            pInputText
+            type="text"
+            id="name"
+            class="rounded-md w-full border-gray-200 lowercase"
+            placeholder="write the tag name..."
+            i18n-placeholder
+            formControlName="name"
+            (enter)="submit()"
+          />
+          <label htmlFor="name">Name</label>
+        </span>
+        <div
+          class="flex flex-col text-red-400 mb-7"
+          *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+        >
+          <small *ngIf="name?.errors?.['required']" i18n>
+            Error: the name can not be empty
+          </small>
+          <small *ngIf="name?.errors?.['minlength']" i18n>
+            Error: you need
+            {{name?.errors?.['minlength']?.['requiredLength'] - name?.errors?.['minlength']?.['actualLength']}}
+            characters more to meet the minimum length of
+            {{name?.errors?.['minlength']?.['requiredLength']}}
+          </small>
+          <small *ngIf="name?.errors?.['maxlength']" i18n>
+            Error: you have
+            {{name?.errors?.['maxlength']?.['actualLength'] - name?.errors?.['maxlength']?.['requiredLength']}}
+            characters more than the maximum length of
+            {{name?.errors?.['maxlength']?.['requiredLength']}}
+          </small>
+        </div>
+        <div class="flex justify-end">
+          <p-button
+            type="submit"
+            styleClass="p-button-secondary"
+            [ngClass]="{
+              'cursor-pointer': !isFormInvalid,
+              'cursor-not-allowed': isFormInvalid
+            }"
+            [style]="{ 'margin-right': '0.5rem' }"
+            icon="pi {{ isUpdate ? 'pi-sync' : 'pi-tag' }}"
+            iconPos="left"
+            [label]="buttonLabel"
+            [disabled]="isFormInvalid"
+          >
+          </p-button>
+          <p-button
+            (click)="cancel()"
+            styleClass="p-button-warning"
+            icon="pi pi-times"
+            iconPos="left"
+            label="cancel"
+          >
+          </p-button>
+        </div>
+      </form>
+    </p-fieldset>
+  </div>
+</div>
