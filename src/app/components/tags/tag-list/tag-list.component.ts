@@ -38,7 +38,7 @@ export class TagListComponent {
 
   public editTag = (tag: TagModel): void => {
     this.formRef = this.dialogService.open(CreateTagFormComponent, {
-      header: $localize`Update new tag`,
+      header: $localize`Update tag`,
       styleClass: 'w-1/3',
       data: {
         tag,
@@ -58,7 +58,7 @@ export class TagListComponent {
 
   public deleteTag = (tag: TagModel): void => {
     this.formRef = this.dialogService.open(DeleteTagComponent, {
-      header: $localize`Delete new tag`,
+      header: $localize`Delete tag`,
       styleClass: 'w-1/3',
       data: {
         tag,

@@ -59,7 +59,7 @@ export class CreateTagFormComponent implements OnInit {
   }
 
   public submit(): void {
-    this.tag.name = this.tagForm.get('name')?.value || '';
+    this.tag.name = this.tagForm.get('name')?.value?.toLowerCase() || '';
 
     if (!this.isUpdate) {
       this.apiService.tags.create$(this.tag).subscribe({
